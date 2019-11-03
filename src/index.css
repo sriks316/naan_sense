@@ -5,9 +5,57 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #ECECEC;
+
+}
+
+h4 {
+	color: white;
+}
+
+.nav-color {
+    background-color: #00887A;
+    border-color: 6px solid #001a70;
+    color: white;
+}
+
+.navbar .navbar-expand .navbar-light {
+    color: white;
+    font-weight: bold;
+    border-color: 6px solid #001a70;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+.section-main {
+  background-color: #00887A;
+}
+
+.section-grey {
+  background-color: #ECECEC;
+}
+
+.section-beige {
+  background-color: #E7E3D4;
+}
+.section-grey h4 {
+	color: green;
+}
+
+h6 {
+	color: green;
+}
+input .btn .btn-primary {
+	color: #00887A;
+}
+
+.section-grey form  {
+	background-color: white;
+  border: 5px solid white;
+  margin-top: 3px;
+}
+.fixed-bottom {
+	padding-top: 2px;
 }
