@@ -47,6 +47,8 @@ export default withAuth(class MfaForm extends Component {
         console.log (response.statusText);
       } else {
           const response_json = await response.json();
+          console.log(response_json);
+          debugger;
           this.setState({ sessionToken: response_json.sessionToken });
       }
     } catch (error) {
@@ -98,9 +100,12 @@ export default withAuth(class MfaForm extends Component {
 
               </form>
             );
-          } else if (this.state.sessionToken) {
-            return(<LoginForm baseUrl= "https://dev-254942.okta.com" />);
-          }
+          } 
+            else if (this.state.sessionToken) {
+              debugger;
+              this.props.auth.redirect({sessionToken: this.state.sessionToken});
+              return null;
+          } 
 
         }
       z

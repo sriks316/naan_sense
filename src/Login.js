@@ -9,7 +9,7 @@ import { withAuth } from '@okta/okta-react';
 export default withAuth(class Login extends Component {
   constructor(props) {
     super(props);
-    this.state = { authenticated: null };
+    this.state = { authenticated: null, userinfo: {} };
     this.checkAuthentication = this.checkAuthentication.bind(this);
     this.checkAuthentication();
   }
@@ -27,8 +27,11 @@ export default withAuth(class Login extends Component {
 
   render() {
     if (this.state.authenticated === null) return null;
-    return this.state.authenticated ?
-      <Redirect to={{ pathname: '/' }}/> :
-      <LoginForm baseUrl={this.props.baseUrl} />;
+
+    if (this.state.authenticated) {
+       return ( <Redirect to={ { pathname: '/' }, { userinfo: this.state.userinfo } }/>);
+    } else {
+      return (<LoginForm baseUrl={this.props.baseUrl} />);
+    }
   }
 });

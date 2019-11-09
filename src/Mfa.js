@@ -29,6 +29,6 @@ export default withAuth(class Mfa extends Component {
     if (this.state.authenticated === null) return null;
     return this.state.authenticated ?
       <Redirect to={{ pathname: '/' }}/> :
-      <LoginForm baseUrl={this.props.baseUrl} />;
+      <LoginForm baseUrl={"http://localhost:3000"l} />;
   }
 });

@@ -4,8 +4,6 @@ import OktaAuth from '@okta/okta-auth-js';
 import { withAuth } from '@okta/okta-react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
-//import config from '../../app.config';
-
 export default withAuth(class RegisterPage extends React.Component{
   constructor(props){
     super(props);
@@ -72,9 +70,9 @@ export default withAuth(class RegisterPage extends React.Component{
           "lastName": this.state.lastName,
           "email": this.state.email,
           "login": this.state.email,
-          "password": this.state.password 
+          "password": this.state.password
 
-          })        
+          })      
       })
       if (!response.ok) {
         console.log(response);
@@ -88,12 +86,6 @@ export default withAuth(class RegisterPage extends React.Component{
     }
   }
 
-  // handleSuccessRegistraion {
-  //   if (this.state.) {
-  //     return( <div>"Please login with your credentials"</div>)
-  //   }
-
-  // }
 
   render(){
     if (this.state.sessionToken) {
@@ -102,7 +94,6 @@ export default withAuth(class RegisterPage extends React.Component{
     }
 
     if(this.state.registered === true){
-      //debugger;
       return <Redirect to="/login"/>
     }
 

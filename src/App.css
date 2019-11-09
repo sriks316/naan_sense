@@ -20,6 +20,39 @@
 .App-link {
   color: #09d3ac;
 }
-.section-main {
-  background-color: #f7ea48;
+
+.form-group {
+  margin-left: 3px;
+  margin-right: 3px;
+}
+
+.form-group.required .username:after { 
+   content:"*";
+   color:red;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #1BA261;
+    border-color: #007bff;
+}
+
+.card-header:first-child {
+  background-color: #1BA261;
+}
+
+.cookiePolicy {
+  display: none;
+}
+
+.disabled  {
+    pointer-events: none;
+    opacity: 0.4;
+    cursor:not-allowed;
+}
+
+.disabled:hover {
+    pointer-events: none;
+    opacity: 0.4;
+    cursor:not-allowed;
 }

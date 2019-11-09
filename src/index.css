@@ -14,15 +14,18 @@ h4 {
 }
 
 .nav-color {
-    background-color: #00887A;
-    border-color: 6px solid #001a70;
+    background-color: #1BA261;
+    border-color: 6px solid #1BA261;
     color: white;
+    font-weight: bold;
 }
-
+.nav-color a{
+	color: white;
+}
 .navbar .navbar-expand .navbar-light {
     color: white;
     font-weight: bold;
-    border-color: 6px solid #001a70;
+    border-color: 6px solid #1BA261;
 }
 
 code {
@@ -30,16 +33,14 @@ code {
     monospace;
 }
 .section-main {
-  background-color: #00887A;
+  background-color: #1BA261;
 }
 
 .section-grey {
-  background-color: #ECECEC;
+  background-color: white;
 }
 
-.section-beige {
-  background-color: #E7E3D4;
-}
+
 .section-grey h4 {
 	color: green;
 }
@@ -47,15 +48,35 @@ code {
 h6 {
 	color: green;
 }
-input .btn .btn-primary {
-	color: #00887A;
-}
 
 .section-grey form  {
 	background-color: white;
-  border: 5px solid white;
+  border: 2px solid #1BA261;
   margin-top: 3px;
 }
 .fixed-bottom {
-	padding-top: 2px;
+	margin-top: -10px;
+}
+.navbar-light {
+	color: white;
+	font-weight: bold;
+}
+
+hr {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  border: 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+.card-header:first-child {
+  background-color: #1BA261;
+}
+
+.cookiePolicy {
+  display: none;
+}
+
+.card-body .disabled  {
+    pointer-events: none;
+    opacity: 0.4;
 }

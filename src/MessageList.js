@@ -3,19 +3,20 @@ import React, { Component } from 'react';
 
 async function checkAuthentication() {
   const authenticated = await this.props.auth.isAuthenticated();
+
   if (authenticated && !this.state.userinfo) {
     const userinfo = await this.props.auth.getUser();
-    //const accesstoken = await this.props.auth.getAccesToken();
-    console.log('');
+    //const accessToken = await this.props.auth.getAccessToken();
+    //console.log(userinfo);
     this.setState({ userinfo });
-    console.log(this.state);
+
   }
 }
 
 export default withAuth(class MessageList extends Component {
   constructor(props) {
     super(props);
-    this.state = { userinfo: null };
+    this.state = { userinfo: {} };
     this.checkAuthentication = checkAuthentication.bind(this);
   }
 
@@ -32,7 +33,8 @@ export default withAuth(class MessageList extends Component {
       <div>
         {this.state.userinfo !== null &&
           <div>
-            <p>Welcome back, {this.state.userinfo.name}!</p>
+            <p>Welcome back, {this.state.userinfo}!</p>
+
           </div>
         }
       </div>

@@ -23,11 +23,15 @@ class User extends Component {
 
   onFormSubmit(data) {
     let apiUrl;
+    let requestMethod;
 
     if(this.state.isEditUser){
-      apiUrl = 'http://localhost/dev/tcxapp/reactapi/editProduct';
+      debugger;
+      apiUrl = 'http://localhost:3002/api/v1/users/' + '123';
+      requestMethod = 'PUT'
     } else {
       apiUrl = 'http://localhost:3002/api/v1/users?activated=true';
+      requestMethod = 'POST'
     }
 
     const myHeaders = new Headers({
@@ -36,11 +40,13 @@ class User extends Component {
          })
 
     const options = {
-      method: 'POST',
+      method: requestMethod,
       body: JSON.stringify(data),
-      myHeaders
+      headers: new Headers({
+           'Accept': 'application/json',
+           'Content-Type': 'application/json'
+        }),
     };
-    debugger;
     fetch(apiUrl, options)
       .then(res => res.json())
       .then(result => {
@@ -58,13 +64,10 @@ class User extends Component {
 
   editUser = userId => {
 
-    const apiUrl = 'http://localhost/dev/tcxapp/reactapi/getProduct';
-    const formData = new FormData();
-    formData.append('userId', userId);
+    const apiUrl = 'http://localhost:3002/api/v1/users/' + userId;
 
     const options = {
-      method: 'POST',
-      body: formData
+      method: 'GET'
     }
 
     fetch(apiUrl, options)
@@ -78,6 +81,7 @@ class User extends Component {
           });
         },
         (error) => {
+          debugger;
           this.setState({ error });
         }
       )
@@ -93,9 +97,9 @@ class User extends Component {
     return (
       <div className="User">
         <Container>
-          <h1 style={{textAlign:'center'}}>User Manangement</h1>
+          <h1 style={{textAlign:'center'}}>User Management</h1>
           {!this.state.isAddUser && <Button variant="primary" onClick={() => this.onCreate()}>Add User</Button>}
-          {this.state.response.status === 'success' && <div><br /><Alert variant="info">{this.state.response.message}</Alert></div>}
+          {this.state.response.status === 'ok' && <div><br /><Alert variant="info">{this.state.response.message}</Alert></div>}
           {!this.state.isAddUser && <UserList editUser={this.editUser}/>}
           { userForm }
           {this.state.error && <div>Error: {this.state.error.message}</div>}

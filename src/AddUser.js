@@ -5,7 +5,7 @@ class AddUser extends React.Component {
   constructor(props) {
     super(props);
     this.initialState = {
-      id: '',
+      userId: '',
       userName: '',
       firstName: '',
       lastName: '',
@@ -40,10 +40,32 @@ class AddUser extends React.Component {
   render() {
 
     let pageTitle;
-    if(this.state.id) {
+    let passwordForm;
+    if(this.state.message && this.state.message.id) {
+
+      
+        this.state.firstName = this.state.message.profile.firstName
+        this.state.lastName = this.state.message.profile.lastName
+        this.state.email = this.state.message.profile.email
+        this.state.id = this.state.message.id
+
+
       pageTitle = <h2>Edit User</h2>
+      passwordForm =''
+
+
     } else {
       pageTitle = <h2>Add User</h2>
+      passwordForm = 
+              <Form.Group controlId="password">
+                <Form.Label>Password</Form.Label>
+                <Form.Control
+                  type="password"
+                  name="password"
+                  value={this.state.password}
+                  onChange={this.handleChange}
+                  placeholder="password" />
+              </Form.Group>
     }
 
     return(
@@ -79,15 +101,7 @@ class AddUser extends React.Component {
                   onChange={this.handleChange}
                   placeholder="Email" />
               </Form.Group>
-              <Form.Group controlId="password">
-                <Form.Label>Password</Form.Label>
-                <Form.Control
-                  type="password"
-                  name="password"
-                  value={this.state.password}
-                  onChange={this.handleChange}
-                  placeholder="password" />
-              </Form.Group>
+              {passwordForm}
               <Form.Group>
                 <Form.Control type="hidden" name="id" value={this.state.id} />
                 <Button variant="success" type="submit">Save</Button>

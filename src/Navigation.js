@@ -6,15 +6,17 @@ import { Navbar, NavItem, NavDropdown, Container, NavbarBrand, MenuItem, Nav, Fo
 export default withAuth(class Navigation extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { authenticated: null };
+    this.state = { authenticated: null, userinfo: {} };
     this.checkAuthentication = this.checkAuthentication.bind(this);
     this.checkAuthentication();
   }
 
   async checkAuthentication() {
     const authenticated = await this.props.auth.isAuthenticated();
+    const userinfo = await this.props.auth.getUser();
+    //this.setState({ groups: userinfo.groups });
     if (authenticated !== this.state.authenticated) {
-      this.setState({ authenticated });
+      this.setState({ authenticated: authenticated, userinfo: userinfo });
     }
   }
 
@@ -23,43 +25,62 @@ export default withAuth(class Navigation extends React.Component {
   }
 
   render() {
+    // let NavList;
+    // if(this.state.authenticated && this.state.userinfo.groups.includes("Admin") {
+    //   NavList =
+    //     <nav class="nav-color my-2 my-md-0 mr-md-3">
+    //       <a class="p-2" href="/adminlist">Admin List</a>
+    //       <a class="p-2" href="#">User Manangement</a>
+    //       <a class="p-2" href="/mylist">Newsletter</a>
+    //       <a class="p-2" href="#">Support</a>
+    //       <a class="p-2" href="/pricing">Pricing</a>
+    //     </nav>
+    // } else if (this.state.authenticated && this.state.userinfo.groups.includes("Everyone") {
+    //     NavList = 
+    //       <nav class="nav-color my-2 my-md-0 mr-md-3">
+    //         <a class="p-2" href="/mylist">My List</a>
+    //         <a class="p-2" href="/mylist">Newsletter</a>
+    //         <a class="p-2" href="#">Support</a>
+    //         <a class="p-2" href="/pricing">Pricing</a>
+    //       </nav>
+    // } else {
+
+    //     NavList =
+    //       <nav class="nav-color my-2 my-md-0 mr-md-3">
+    //         <a class="p-2" href="/pricing">Pricing</a>
+    //       </nav>
+    // }
     if (this.state.authenticated === null) return null;
-     
     if (this.state.authenticated) {
       return (
         <React.Fragment>
-          <Navbar className='nav-color' >
-            <Navbar href="#home">NaanSense</Navbar>
-            <Nav className="mr-auto">
-              <Nav.Link onClick={() => {this.props.auth.login()}}>Login</Nav.Link>
-              <Nav.Link href='/profile'>Profile</Nav.Link>
-              <Nav.Link href='/messagelist'>My List</Nav.Link>
-              <Nav.Link href="#pricing">Pricing</Nav.Link>
-            </Nav>
-
-          </Navbar>
-            <div className="fixed-bottom">  
+          <div className="nav-color d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3  border-bottom shadow-sm">
+            <h5 className="my-0 mr-md-auto font-weight-normal"><a href="/">Naan Sense</a></h5>
+              <nav className="nav-color my-2 my-md-0 mr-md-3">
+                <a className="p-2" href="/mylist">My List</a>
+                <a className="p-2" href="/mylist">Newsletter</a>
+                <a className="p-2" href="#">Support</a>
+              </nav>
+            <a className="btn btn-primary" href="#" onClick={() => {this.props.auth.logout()}}>Logout</a>
+          </div>
+          <div className="fixed-bottom">  
             <section className='section-main'>
-              <h4 align='center'>Naan Sense - The Food Podcast</h4>
-              <div className='no-margin'>Hear from food writers around the world who have been there, eaten that and know that there is no love more sincere than the love of food.</div>
+              <div className='no-margin'>Copyright @Naan Sense</div>
             </section>
-            </div>
+          </div>
 
         </React.Fragment>
       )
     } else {
         return (
           <React.Fragment>
-            <Navbar className='nav-color' >
-              <Navbar href="#home">NaanSense</Navbar>
-              <Nav className="mr-auto">
-                <Nav.Link onClick={() => {this.props.auth.login()}}>Login</Nav.Link>
-                <Nav.Link href='/registerpage'>Register</Nav.Link>
-                <Nav.Link href="#pricing">Pricing</Nav.Link>
-              </Nav>
-
-            </Navbar>
-
+             <div className="nav-color d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3  border-bottom shadow-sm">
+                <h5 className="my-0 mr-md-auto font-weight-normal"><a href="/">Naan Sense</a></h5>
+                <nav className="nav-color my-2 my-md-0 mr-md-3">
+                  <a className="p-2" href="/pricing">Pricing</a>
+                </nav>
+                <a className="btn btn-primary" href="#" onClick={() => {this.props.auth.login()}}>Sign In</a>
+              </div>
           </React.Fragment>
         )     
       }
