@@ -68,7 +68,7 @@ export default withAuth(class Home extends Component {
                     <div align='center'className="card-body disabled">
                       <ul className="list-unstyled mt-3 mb-4">
                         <li><ReactPlayer url='https://soundcloud.com/halfhourintern/americas-fittest-trucker-with-siphiwe-baleka' width= '80%' height = '80%' /></li>
-                        <li><ReactPlayer url='https://soundcloud.com/food-heaven-podcast/how-to-separate-working-out' width= '80%' height = '80%' /></li>
+                        <li><ReactPlayer url='https://soundcloud.com/food-heaven-podcast/radical-fitness-w-lindsey-page' width= '80%' height = '80%' /></li>
                       </ul>
                     </div>
                   </div>
@@ -79,7 +79,7 @@ export default withAuth(class Home extends Component {
                     </div>
                     <div align='center' className="card-body disabled">
                       <ul className="list-unstyled mt-3 mb-4">
-                        <li><ReactPlayer url='https://soundcloud.com/halfhourintern/americas-fittest-trucker-with-siphiwe-baleka' width= '80%' height = '80%' /></li>
+                        <li><ReactPlayer url='https://soundcloud.com/user-431417748/from-fast-food-junkie-to-fit-healthy' width= '80%' height = '80%' /></li>
                         <li><ReactPlayer url='https://soundcloud.com/food-heaven-podcast/how-to-separate-working-out' width= '80%' height = '80%' /></li>  
                       </ul>
                     </div>

@@ -2,8 +2,9 @@
 //import 'bootstrap/dist/css/bootstrap.css';
 import React, { Component } from 'react';
 import OktaAuth from '@okta/okta-auth-js';
+import { Redirect } from 'react-router-dom';
 import { withAuth } from '@okta/okta-react';
-import MfaForm from './MfaForm';
+//import MfaForm from './MfaForm';
 
 export default withAuth(class LoginForm extends Component {
   constructor(props) {
@@ -13,10 +14,13 @@ export default withAuth(class LoginForm extends Component {
       username: '',
       password: '',
       mfaRequired: false,
+      mfaEnroll: false,
       mfa: ''
     }
-
-    this.oktaAuth = new OktaAuth({ url: props.baseUrl });
+    const config = {
+      url: props.baseUrl
+    };
+    this.oktaAuth = new OktaAuth(config);
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleUsernameChange = this.handleUsernameChange.bind(this);
@@ -89,27 +93,41 @@ export default withAuth(class LoginForm extends Component {
   render() {
     if (this.state.sessionToken) {
       this.props.auth.redirect({sessionToken: this.state.sessionToken});
-      //this.props.auth.setCookieAndRedirect(this.state.sessionToken);
       return null;
     } 
     else if(this.state.mfaRequired) {
       return (
-        <form className="col-md-8 col-md-offset-8" onSubmit={this.handleMfaSubmit}>
-          <div className='form-group w-25'> 
-            <label>MFA CODE </label>
-                <input className="form-control"
-                  id="mfa" type="text" 
-                  onChange={this.handleMfaChange}/>
+        <div align='center'>
+          <div className='section-grey'>
+            <form className="bordered col-md-4" onSubmit={this.handleMfaSubmit}>
+              <h4> Multi Factor Authentication</h4><hr/>
+              <div className='form-group required row'> 
+                  <div className='form-group required row'> 
+                    <label htmlFor="verification Code"><strong>Verification Code</strong></label>
+                        <input className="form-control"
+                          id="mfa" type="text"
+                          onChange={this.handleMfaChange} />
+                  </div>
+              </div>
+              <input id="submit" type="submit" value="Submit" />
+            </form>
           </div>
-          <input id="submit" type="submit" value="Submit" />
-
-        </form>
+        </div>
       );     
     } 
     else {
-
+      const params = new URLSearchParams(this.props.auth._history.location.search);
+      const registration = params.get('registration'); 
+      let registrationMessage;
+      if (registration=="success") {
+        registrationMessage = 
+          <div class="alert alert-success">
+            <strong>Success!</strong> You were successfully registered. Please Sign in with your new account.
+          </div>
+      }
       return (
         <div align='center'>
+          {registrationMessage}
           <div className='section-grey'>
             <form className="bordered col-md-4" onSubmit={this.handleSubmit}>
               <h6>Naan sense</h6>

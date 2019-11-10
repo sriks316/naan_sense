@@ -94,7 +94,9 @@ export default withAuth(class RegisterPage extends React.Component{
     }
 
     if(this.state.registered === true){
-      return <Redirect to="/login"/>
+      return(
+        <Redirect to="/login?registration=success"/ >
+      )
     }
 
     return(

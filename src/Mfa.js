@@ -3,7 +3,7 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 //import { BrowserRouter as Router, Route } from 'react-router-dom';
-import MfaForm from './MfaForm';
+//import MfaForm from './MfaForm';
 import { withAuth } from '@okta/okta-react';
 
 export default withAuth(class Mfa extends Component {

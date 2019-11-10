@@ -46,7 +46,6 @@ export default (class AdminLanding extends Component {
                   </div>
                   <div align='center' class="card-body">
                     <ul class="list-unstyled mt-3 mb-4">
-                      <li>TEST</li>
                       <li><ReactPlayer url='https://soundcloud.com/food-heaven-podcast/how-to-separate-working-out' width= '80%' height = '80%' /></li>
                       <li><ReactPlayer url='https://soundcloud.com/food-heaven-podcast/how-to-separate-working-out' width= '80%' height = '80%' /></li>  
                     </ul>
